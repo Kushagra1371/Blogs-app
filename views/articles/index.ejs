@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="http://1.bp.blogspot.com/-G7l5xvg9LYg/T411-2q_cnI/AAAAAAAACx8/w5KBDcGF9gI/s1600/bb-avatar.png" type="image/png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <title>Blog</title>
+</head>
+<body style="background-color: #f8f9fa;">
+  <div class="container mt-5" style="background-color: #ffffff; border-radius: 10px; padding: 20px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);">
+    <h1 style="font-size: 2rem; margin-bottom: 1.5rem;">Blog Articles</h1>
+    <a href="/articles/new" class="btn btn-primary mb-3" style="background-color: #007bff; border-color: #007bff;">Create New Article</a>
+
+    <% articles.forEach(article => { %>
+      <div class="card bg-white mb-4" style="border: none; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); transition: transform 0.2s;">
+        <div class="card-body">
+          <h4 class="card-title text-primary" style="font-size: 1.25rem; margin-bottom: 0.5rem;"><%= article.title %></h4>
+          <p class="card-subtitle text-muted mb-2" style="font-size: 0.875rem;"><%= article.createdAt.toLocaleDateString() %></p>
+          <p class="card-text mb-3" style="font-size: 0.9rem;"><%= article.description %></p>
+          <a href="articles/<%= article.slug %>" class="btn btn-primary btn-sm mr-2" style="background-color: #007bff; border-color: #007bff;">Read More</a>
+          <a href="articles/edit/<%= article.id %>" class="btn btn-info btn-sm mr-2" style="background-color: #17a2b8; border-color: #17a2b8;">Edit</a>
+          <form action="/articles/<%= article.id %>?_method=DELETE" method="POST" class="d-inline">
+            <button type="submit" class="btn btn-danger btn-sm" style="background-color: #dc3545; border-color: #dc3545;">Delete</button>
+          </form>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+</body>
+</html>
